@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
     const startBtn = document.querySelector('#start-button')
     let squares = Array.from(document.querySelectorAll('.grid div'))
     console.log(squares)
+    let intervalId
 
 //Los Tetrominos
 
@@ -51,5 +52,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
             squares[currentPosition + index].classList.add('tetromino')
         });
     }
-    draw()
+    function undraw(){
+        current.forEach(index=>{
+            squares[currentPosition + index].classList.remove('tetromino')
+        });
+    }
+    
+    intervalId = setInterval(moveDown, 1000)
+
+    function moveDown(){
+        //temporizador...
+        undraw()
+
+        currentPosition += width
+
+        //temporizador...
+        draw()
+    }
 })
